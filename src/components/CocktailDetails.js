@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CocktailDetails = (props) =>{
-
+  console.log("in cocktaildetails");
     return <div className="categoryContainer">
     <div className="categoryTitle">Details</div>         
     <div className="imageDiv">

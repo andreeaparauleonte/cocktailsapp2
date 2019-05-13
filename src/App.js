@@ -86,7 +86,8 @@ class App extends Component {
         <CocktailDetails {...this.state.selectedItem} cancelDetailsCocktail={this.cancelDetailsCocktail} />
       }
       
-      <Switch>      
+      <Switch> 
+           
         <Route path="/:id" render={
           (props) => {
             let category = this.state.categories.filter(x=>x.id===props.match.params.id)[0];
@@ -100,7 +101,8 @@ class App extends Component {
               />
               )
           }            
-        }/>      
+        }/>
+             
       </Switch>
       
 

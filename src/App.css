@@ -20,6 +20,9 @@ margin:0;
   border:1px solid darkred;
   padding:5px;
 }
+.App-header td.active{
+  background-color:lightgreen;
+}
 .App-search input {
   width: 400px;
   background-color: lightcoral;
@@ -36,10 +39,14 @@ margin:0;
 .viewCocktail h2, .viewCocktail img{
   width:100%;
 }
-button.backButton{
-    float: left;
-    margin: 10px 100px;
-    width: 100px;
+button.backButton {
+  float: left;
+  margin: 10px 100px;
+  width: 100px;
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .footer {
   min-height: 50px;

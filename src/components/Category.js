@@ -11,6 +11,10 @@ import Cocktail from './Cocktail';
 import CocktailDetails from './CocktailDetails';
 
 class Category extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
         cocktails: []
     }
@@ -22,6 +26,7 @@ class Category extends Component {
             }
         );
         this.props.resetViewsState(this.props.id);
+        
     }
 
     viewCocktailHandle = (cocktail,categoryid, e) => {
@@ -30,8 +35,7 @@ class Category extends Component {
 
     render(){
         let categoryid= this.props.id;
-        console.log("mc props");
-        console.log(this.props.matchCategory);
+        
         let cocktails = this.state.cocktails.map(
             (cocktail, index) => 
             {return <Cocktail {...cocktail} 
@@ -50,9 +54,10 @@ class Category extends Component {
               {this.props.name}  
             </div>
          {cocktails}
-         <Link to="/alcoholic">test scroll</Link>
+         <Link to={ "/"+categoryid + "/add-cocktail"}> Add cocktail</Link>
          <Switch>
-             <Route path="$/{props.match.path}/:id"></Route>
+            <Route exact path={"/"+categoryid + "/add-cocktail"} render={()=> {console.log("in route"); return (<div>FOUNT ROUTE</div>)}}></Route> 
+             <Route path={`$/{props.match.path}/:id`}></Route>
          </Switch>
          
         </div>
