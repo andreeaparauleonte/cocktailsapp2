@@ -2,32 +2,74 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: lightgray;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
-
-.App-link {
-  color: #61dafb;
+.App-header table{
+width:100%;
+background-color:lightcoral;
+margin:0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App-header td{
+  border:1px solid darkred;
+  padding:5px;
+}
+.App-search input {
+  width: 400px;
+  background-color: lightcoral;
+  border-radius: 5px;
+  border: 1px solid darkred;
+  padding:5px;
+  margin: 10px;
+  font-size: 14px;
+}
+.viewCocktail{
+  width:500px;
+  margin:auto;
+}
+.viewCocktail h2, .viewCocktail img{
+  width:100%;
+}
+button.backButton{
+    float: left;
+    margin: 10px 100px;
+    width: 100px;
+}
+.footer {
+  min-height: 50px;
+  background-color: lightgray;
+  display: flex;
+  width: 100%;
+}
+.imageDiv{
+  width:30%;
+  margin: 0 10%;
+  float: left;
+}
+.imageDiv button{
+  margin:10px;
+  float: left;
+  height: 30px;
+  width:100px;
+  border-radius: 5px;
+}
+.imageDiv img{
+  width: 100%;
+}
+.detailsDiv{
+  width:50%;
+  float: left;
+  text-align: left;
+  padding-top:50px;
+}
+.detailsDiv p{
+  margin-top:0;
+  font-size: 16px;
+  font-weight: bold;
 }

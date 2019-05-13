@@ -1,0 +1,45 @@
+.categoryContainer{
+    float: left;
+    border-top: 1px solid black;
+    position: relative;
+    padding-top: 30px;
+    margin-top:30px;
+    width:100%;
+}
+.categoryContainer.hidden{
+    display: none;
+}
+.categoryTitle {
+    width: 300px;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    padding: 10px;
+    background-color: white;
+    top: -25px;
+    margin: auto auto;
+    left: 0;
+    right: 0;
+}
+.cocktailItem{
+    width:200px;
+    float: left;
+    display: inline;
+    margin:10px;
+    height: 260px;
+    border:1px solid white;
+}
+.cocktailItem:hover{
+    border:1px solid grey;
+}
+.cocktailItem img{
+    width: 100%;
+    cursor: pointer;
+}
+.cocktailItem h4{
+    margin:0;
+    cursor: pointer;
+}
+.cocktailItem h4:hover{
+    color: darkslategrey;
+}
