@@ -26,10 +26,7 @@ class Category extends Component {
 
     render(){
         let categoryid= this.props.matchCategory.params.id;
-        let cocktails = this.state.cocktails.map((cocktail, index) => 
-            {return <Cocktail {...cocktail} key={cocktail.idDrink} categoryid={categoryid}/>                        
-        });
-        
+              
         return (<Switch>
                     <Route path={"/"+categoryid + "/add-cocktail"} render={() => 
                         {return (<AddCocktailFormik backLocation={"/" + categoryid}/>)}}/>     
@@ -42,6 +39,9 @@ class Category extends Component {
                         }} />
                                 
                     <Route path={"/" + categoryid} render={()=> {
+                            let cocktails = this.state.cocktails.map((cocktail, index) => 
+                                {return <Cocktail {...cocktail} key={cocktail.idDrink} categoryid={categoryid}/>                        
+                            });
                             return (<div className="categoryContainer">
                                             <div className="categoryTitle">{this.props.name}</div>          
                                             {cocktails}
