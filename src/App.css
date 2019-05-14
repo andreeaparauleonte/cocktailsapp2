@@ -58,6 +58,8 @@ button.backButton {
   width:30%;
   margin: 0 10%;
   float: left;
+  min-height: 200px;
+
 }
 .imageDiv button{
   margin:10px;
@@ -73,10 +75,20 @@ button.backButton {
   width:50%;
   float: left;
   text-align: left;
-  padding-top:50px;
 }
-.detailsDiv p{
-  margin-top:0;
+.detailsDiv .rowForm{
+  margin:10px 0;
   font-size: 16px;
   font-weight: bold;
+  float: left;
+  clear: both;
+  width:100%;
+}
+.detailsDiv .rowForm label{
+  width:100px;
+  float: left;
+}
+.detailsDiv .rowForm input{
+  width:60%;
+  float: left;
 }

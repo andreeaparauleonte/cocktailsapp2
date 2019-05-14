@@ -8,13 +8,10 @@ import {
   } from 'react-router-dom';
 
 import Cocktail from './Cocktail';
-import CocktailDetails from './CocktailDetails';
+import CocktailView from './CocktailView';
+import AddCocktailFormik from './AddCocktailFormik';
 
 class Category extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         cocktails: []
     }
@@ -24,45 +21,36 @@ class Category extends Component {
         axios.get(url).then(response => {
             this.setState({cocktails : response.data.drinks })
             }
-        );
-        this.props.resetViewsState(this.props.id);
-        
-    }
-
-    viewCocktailHandle = (cocktail,categoryid, e) => {
-        this.props.viewCocktailHandle(cocktail, categoryid);
+        );     
     }
 
     render(){
-        let categoryid= this.props.id;
-        
-        let cocktails = this.state.cocktails.map(
-            (cocktail, index) => 
-            {return <Cocktail {...cocktail} 
-                        key={cocktail.idDrink} 
-                        matchCategory={categoryid}
-                        viewCocktailHandle={this.viewCocktailHandle.bind(this, cocktail)} 
-                        />
-                        
+        let categoryid= this.props.matchCategory.params.id;
+        let cocktails = this.state.cocktails.map((cocktail, index) => 
+            {return <Cocktail {...cocktail} key={cocktail.idDrink} categoryid={categoryid}/>                        
         });
         
-        let classNameContainer = this.props.hide? "categoryContainer hidden" : "categoryContainer";
-        
-        return (
-        <div className={classNameContainer}>
-            <div className="categoryTitle">
-              {this.props.name}  
-            </div>
-         {cocktails}
-         <Link to={ "/"+categoryid + "/add-cocktail"}> Add cocktail</Link>
-         <Switch>
-            <Route exact path={"/"+categoryid + "/add-cocktail"} render={()=> {console.log("in route"); return (<div>FOUNT ROUTE</div>)}}></Route> 
-             <Route path={`$/{props.match.path}/:id`}></Route>
-         </Switch>
-         
-        </div>
+        return (<Switch>
+                    <Route path={"/"+categoryid + "/add-cocktail"} render={() => 
+                        {return (<AddCocktailFormik backLocation={"/" + categoryid}/>)}}/>     
+                    
+                    <Route exact path={"/" + categoryid+"/:id"} render={(props) => {
+                            let cocktailId = props.match.params.id;
+                            let cocktail = this.state.cocktails.filter(x=>x.idDrink === cocktailId)[0];
+                            
+                            return (<CocktailView {...cocktail} backLocation={"/" + categoryid}/>)
+                        }} />
+                                
+                    <Route path={"/" + categoryid} render={()=> {
+                            return (<div className="categoryContainer">
+                                            <div className="categoryTitle">{this.props.name}</div>          
+                                            {cocktails}
+                                            <Link to={ "/"+categoryid + "/add-cocktail"} > Add cocktail</Link>
+                                        </div>)
+                            }}/>                                      
+         </Switch>       
         );
-}
+        }
 }
 
 export default Category;
