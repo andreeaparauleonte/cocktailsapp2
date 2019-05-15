@@ -1,7 +1,4 @@
 import React,{Component} from 'react';
-import {  
-  Link
-} from 'react-router-dom';
 
 class AddCocktail  extends Component{
   constructor(props){
@@ -56,7 +53,7 @@ class AddCocktail  extends Component{
             </div>
             </div>
         </form>
-        <Link to={this.props.backLocation}><button className="backButton" >Back</button></Link>
+        <button className="backButton" onClick={props.history.goBack}>Back</button>
         </div>
         
     )

@@ -43,3 +43,14 @@
 .cocktailItem h4:hover{
     color: darkslategrey;
 }
+
+.AddCocktailButton {
+    border: 1px solid darkgoldenrod;
+    font-size: 31px;
+    font-weight: bold;
+    border-radius: 90px;
+    display: block;
+    float: left;
+    padding: 30px;
+    background-color: lightyellow;
+}

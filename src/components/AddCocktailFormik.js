@@ -1,60 +1,43 @@
 import React, {Component} from 'react';
 import { Formik } from 'formik';
-import {  
-    Link
-  } from 'react-router-dom';
-
 
 class AddCocktailFormik  extends Component{
     constructor(props){
         super(props);
         this.state ={
-            imgSrc: "" 
+            image: null
         }
-        this.cocktailfile = React.createRef();
-        this.changeFileState=this.changeFileState.bind(this);
+        this.onImageChange = this.onImageChange.bind(this);
     }
 
-    changeFileState(){
-        // Assuming only image
-        var file = this.cocktailfile.current.files[0];
-        console.log("file");
-        console.log(file);
-        var reader = new FileReader();
-        var url = reader.readAsDataURL(file);
-      
-         reader.onloadend = function (e) {
-            this.setState({
-                imgSrc: [reader.result]
-            })
-          }.bind(this);
-        console.log(url); // Would see a path?
-        // TODO: concat files
+      onImageChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.setState({image: e.target.result});
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
       }
 
     render(){
-        console.log(this.props);
         return (<div>
             <h1>My Form</h1>
             <Formik
               initialValues={{ name: "andreea's special", ingredient1: "votca", ingredient2 :"orange juice", quantity: 2 }}
               onSubmit={(values, actions) => {
-                console.log("onsubmit");
-                console.log(values);
-                console.log(this);
-                console.log(this.cocktailfile.current.files[0]);
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  actions.setSubmitting(false);
-                }, 1000);
+                    var newCocktail = {strDrink:values.name, strDrinkThumb:this.state.image, idDrink:"1000001"};
+                    this.props.doAddCocktail(newCocktail);
+                    this.props.history.goBack();
+                
               }}
               render={formikProps=> (
                   <div className="categoryContainer">
                   
                       <form onSubmit={formikProps.handleSubmit}>
                           <div className="imageDiv">
-                              <input type="file" name="pic" ref={this.cocktailfile} accept="image/*" onChange={this.changeFileState} />
-                              <img src={this.state.imgSrc} alt="select image"/>
+                              <input type="file" name="pic" accept="image/*" onChange={this.onImageChange} />
+                              <img src={this.state.image} alt="select image"/>
                           </div>
                           <div className="detailsDiv">
                               <div className="rowForm">
@@ -78,7 +61,7 @@ class AddCocktailFormik  extends Component{
                               </div>
                           </div>
                       </form>
-                      <Link to={this.props.backLocation}><button className="backButton" >Back</button></Link>
+                      <button className="backButton" onClick={this.props.history.goBack}>Back</button>
                   </div>
               )}
             />

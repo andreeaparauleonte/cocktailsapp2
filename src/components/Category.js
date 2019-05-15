@@ -24,18 +24,23 @@ class Category extends Component {
         );     
     }
 
+    addCocktailToState(cocktail){
+        this.setState(prevState => ({
+            cocktails: [...prevState.cocktails, cocktail]
+          }))
+    }
+
     render(){
         let categoryid= this.props.matchCategory.params.id;
               
         return (<Switch>
                     <Route path={"/"+categoryid + "/add-cocktail"} render={() => 
-                        {return (<AddCocktailFormik backLocation={"/" + categoryid}/>)}}/>     
+                        {return (<AddCocktailFormik doAddCocktail={this.addCocktailToState.bind(this)} history={this.props.history} />)}}/>     
                     
                     <Route exact path={"/" + categoryid+"/:id"} render={(props) => {
-                            let cocktailId = props.match.params.id;
+                            let cocktailId = props.match.params.id;                         
                             let cocktail = this.state.cocktails.filter(x=>x.idDrink === cocktailId)[0];
-                            
-                            return (<CocktailView {...cocktail} backLocation={"/" + categoryid}/>)
+                            return (<CocktailView {...cocktail} history={this.props.history} />)
                         }} />
                                 
                     <Route path={"/" + categoryid} render={()=> {
@@ -43,10 +48,10 @@ class Category extends Component {
                                 {return <Cocktail {...cocktail} key={cocktail.idDrink} categoryid={categoryid}/>                        
                             });
                             return (<div className="categoryContainer">
-                                            <div className="categoryTitle">{this.props.name}</div>          
-                                            {cocktails}
-                                            <Link to={ "/"+categoryid + "/add-cocktail"} > Add cocktail</Link>
-                                        </div>)
+                                        <div className="categoryTitle">{this.props.name}</div>          
+                                        {cocktails}
+                                        <Link className="AddCocktailButton" to={ "/"+categoryid + "/add-cocktail"} > Add</Link>
+                                    </div>)
                             }}/>                                      
          </Switch>       
         );

@@ -42,10 +42,10 @@ class App extends Component {
             <header className="App-header">
               <h1>Cocktails</h1>
               <table cellPadding="0" cellSpacing="0">
-              <tbody><tr>        
-                {menuItems}
+                <tbody><tr>        
+                  {menuItems}
                 </tr></tbody>
-                </table>
+              </table>
             </header>
             <div className="App-search">
               <input type="text" defaultValue="Search by name" />
